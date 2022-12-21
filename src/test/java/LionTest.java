@@ -1,10 +1,13 @@
 import com.example.Feline;
 import com.example.Lion;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -14,27 +17,17 @@ public class LionTest {
     @Mock
     Feline feline;
 
-    @Mock
-    Lion lion;
-
     @Test
-    public void getKittensLionZeroArgument (){
-        lion.getKittens();
-        Mockito.verify(lion, Mockito.times(1)).getKittens();
+    public void getKittensLionZeroArgument () throws Exception {
+        Lion lion = new Lion ("Самка", feline);
+        Mockito.when(feline.getKittens()).thenReturn(2);
+        Assert.assertEquals(feline.getKittens(), lion.getKittens());
     }
 
     @Test
-    public void getFoodLionWithPredatorArgument () throws Exception {
-        Feline feline = new Feline();
+    public void getFoodLionZeroArgument () throws Exception {
         Lion lion = new Lion ("Самец", feline);
+        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные1", "Птицы1", "Рыба1"));
         assertEquals(feline.getFood("Хищник"), lion.getFood());
-    }
-
-    @Test
-    public void doesHaveManeLionReturnsCorrectValue () throws Exception {
-        Lion male = new Lion ("Самец", feline);
-        assertTrue(male.doesHaveMane());
-        Lion female = new Lion ("Самка", feline);
-        assertFalse(female.doesHaveMane());
     }
 }

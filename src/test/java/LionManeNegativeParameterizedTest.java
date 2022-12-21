@@ -6,11 +6,11 @@ import org.junit.runners.Parameterized;
 import org.mockito.Mock;
 
 @RunWith(Parameterized.class)
-public class LionParameterizedTest {
+public class LionManeNegativeParameterizedTest {
 
     private final String sex;
 
-    public LionParameterizedTest (String sex){
+    public LionManeNegativeParameterizedTest (String sex){
         this.sex = sex;
     }
 

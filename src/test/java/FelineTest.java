@@ -2,26 +2,23 @@ import com.example.Feline;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FelineTest {
 
-    @Mock
-    Feline feline;
-
     @Test
     public void eatMeatFelineZeroArgument () throws Exception {
-        feline.eatMeat();
-        Mockito.verify(feline, Mockito.times(1)).eatMeat();
+        Feline feline = new Feline();
+        Assert.assertEquals(feline.getFood("Хищник"), feline.eatMeat());
     }
 
     @Test
     public void getFoodFelineWithPredatorArgument () throws Exception {
-        feline.getFood("Хищник");
-        Mockito.verify(feline, Mockito.times(1)).getFood("Хищник");
+        Feline feline = new Feline();
+        Assert.assertEquals(List.of("Животные", "Птицы", "Рыба"), feline.getFood("Хищник"));
     }
 
     @Test
